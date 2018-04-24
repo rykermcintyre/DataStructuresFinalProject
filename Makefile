@@ -16,7 +16,7 @@ all: $(LIBRARY) $(PROGRAMS)
 $(LIBRARY):	$(LIB_OBJ)
 	$(AR) $(ARFLAGS) $@ $(LIB_OBJ)
 
-testtrie: testtrie.o trie.h $(LIBRARY)
+testtrie: testtrie.o project.h $(LIBRARY)
 	$(LD) $(LDFLAGS) -o $@ $< $(LIBRARY)
 
 clean:

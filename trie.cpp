@@ -9,14 +9,17 @@ Trie::Trie() {
 }
 
 void Trie::insert(const string word) {
-	TrieNode *crawl = root;
+	TrieNode *crawl = &root;
+	cout << "Yeah\n";
 	
 	for (int i = 0; i < word.length(); i++) {
 		int index;
 		if (word[i] >= 48 && word[i] <= 57) index = word[i] - '0';
 		else index = word[i] - 'a' + 10;
 		
+// TODO THE PROBLEM IS ON THE FOLLOWING LINE:
 		if (!crawl->children[index]) crawl->children[index] = new TrieNode {.letter = word[i]};
+		cout << "In the for in the trie.cpp\n";
 		
 		crawl = crawl->children[index];
 	}
@@ -25,7 +28,7 @@ void Trie::insert(const string word) {
 }
 
 bool Trie::search(const string word) {
-	TrieNode *crawl = root;
+	TrieNode *crawl = &root;
 	
 	for (int i = 0; i < word.length(); i++) {
 		int index;
