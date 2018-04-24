@@ -2,14 +2,22 @@ CXX=		g++
 CXXFLAGS=	-g -std=gnu++11
 LD=			g++
 LDFLAGS=	
+LIBRARY=	libmap.a
+LIB_SRC=	trie.cpp
+LIB_OBJ=	$(LIB_SRC:.cpp=.o)
 
-all: testtrie
+PROGRAMS=	testtrie
+
+all: $(LIBRARY) $(PROGRAMS)
 
 %.o: %.cpp project.h
 	$(CXX) $(CXXFLAGS) -o $@ -c $<
 
-testtrie: testtrie.o trie.o
-	$(LD) $(LDFLAGS) -o $@ $^
+$(LIBRARY):	$(LIB_OBJ)
+	$(AR) $(ARFLAGS) $@ $(LIB_OBJ)
+
+testtrie: testtrie.o trie.h $(LIBRARY)
+	$(LD) $(LDFLAGS) -o $@ $< $(LIBRARY)
 
 clean:
-	rm -f testtrie
+	rm -f $(LIBRARY) $(PROGRAMS) *.o
