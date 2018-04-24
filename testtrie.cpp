@@ -2,18 +2,15 @@
 
 int main() {
 	Trie t;
-	cout << "Here\n";
-	string keys[] = {"kieran", "ryker", "kiernan", "reichurr"};
-	for (int n = 0; n < 4; n++) {
-		cout << "In the for\n";
+	string keys[] = {"k", "kieran", "ryker", "kiernan", "r", "reichurr", "bob"};
+	for (int n = 0; n < 7; n++) {
 		t.insert(keys[n]);
-		cout << "Inserted\n";
 	}
-	cout << "Hello\n";
-	string vals[] = {"kieran", "ryker", "kiernan", "reichurr", "rayyan", "q", "kie", "crayon", "fuck"};
-	for (int n = 0; n < 9; n++) {
+	string vals[] = {"kieran", "ryker", "kiernan", "reichurr", "rayyan", "q", "kie", "crayon", "ryker", "fuck", "k", "r"};
+	for (int n = 0; n < 12; n++) {
 		bool s = t.search(vals[n]);
 		cout << s << endl;
 	}
+	
 	return 0;
 }

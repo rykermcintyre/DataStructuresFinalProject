@@ -3,23 +3,24 @@
 #include "project.h"
 
 Trie::Trie() {
-	letter = '\0';
-	terminal = false;
-	children = vector<TrieNode*> (36, nullptr);
+	root.letter = '\0';
+	root.terminal = false;
+	root.children = vector<TrieNode*> (36, nullptr);
 }
 
 void Trie::insert(const string word) {
 	TrieNode *crawl = &root;
-	cout << "Yeah\n";
 	
 	for (int i = 0; i < word.length(); i++) {
 		int index;
 		if (word[i] >= 48 && word[i] <= 57) index = word[i] - '0';
 		else index = word[i] - 'a' + 10;
 		
-// TODO THE PROBLEM IS ON THE FOLLOWING LINE:
-		if (!crawl->children[index]) crawl->children[index] = new TrieNode {.letter = word[i]};
-		cout << "In the for in the trie.cpp\n";
+		for (int j = 0; j < crawl->children.size(); j++) {
+			if (crawl->children[i]) cout << crawl->children[i];
+		}
+		
+		if (!crawl->children[index]) crawl->children[index] = new TrieNode {.letter = word[i], .terminal = false, .children = vector<TrieNode*> (36, nullptr)};
 		
 		crawl = crawl->children[index];
 	}
