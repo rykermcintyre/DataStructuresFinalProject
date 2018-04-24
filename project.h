@@ -24,6 +24,10 @@ public:
 	~Trie();
 	void insert(const string word);
 	bool search(const string word);
+	bool deconstruct(TrieNode* node);
 private:
 	TrieNode root;
+	char letter;
+	bool terminal;
+	vector<TrieNode*> children;
 };

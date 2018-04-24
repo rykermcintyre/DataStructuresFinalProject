@@ -40,11 +40,12 @@ bool Trie::search(const string word) {
 	return crawl->terminal;
 }
 
-Trie::deconstruct(TrieNode* node) {
+bool Trie::deconstruct(TrieNode* node) {
 	for (int i = 0; i < 36; i++) {
 		if (node->children[i]) deconstruct(node->children[i]);
 	}
 	delete node;
+	return true;
 }
 
 Trie::~Trie() {
