@@ -12,7 +12,7 @@ void RBTree::insert(const string &key, const string &value){
 
 const Entry RBTree::search(const string &key){
     auto result = entries.find(key);
-    if (result == entries.end()) return NONE;
+    if (result == entries.end()) return EMPTY;
     else return *result;
 }
 

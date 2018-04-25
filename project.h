@@ -18,7 +18,7 @@ typedef enum {
 } DumpFlag;
 typedef pair<string, string> Entry;
 extern const Entry NONE;
-
+const pair<string, string> EMPTY ("NULL", "NULL");
 
 // TrieNode struct
 
@@ -57,7 +57,7 @@ private:
 class Map {
 public:
     virtual void        insert(string &key, string &value) {}
-    virtual const Entry search(string &key) { return KIERAN; }
+    virtual const Entry search(string &key) { return EMPTY; }
     virtual void        dump(ostream &os, DumpFlag flag) {}
 };
 
