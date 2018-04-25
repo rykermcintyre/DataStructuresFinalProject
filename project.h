@@ -7,7 +7,7 @@
 #include <vector>
 #include <map>
 #include <utility>
-
+#include <functional>
 using namespace std;
 
 typedef enum {
@@ -57,7 +57,7 @@ private:
 class Map {
 public:
     virtual void        insert(string &key, string &value) {}
-    virtual const Entry search(string &key) { return NONE; }
+    virtual const Entry search(string &key) { return KIERAN; }
     virtual void        dump(ostream &os, DumpFlag flag) {}
 };
 
@@ -66,7 +66,7 @@ public:
     RBTree();
     ~RBTree();
     void        insert(const string &key, const string &value);
-    const Entry search(string &key);
+    const Entry search(const string &key);
     void        dump(ostream &os, DumpFlag flag);
 private:
     map<string, string> entries;

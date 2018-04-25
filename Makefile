@@ -3,7 +3,7 @@ CXXFLAGS=	-g -std=gnu++11
 LD=			g++
 LDFLAGS=	
 LIBRARY=	libmap.a
-LIB_SRC=	trie.cpp
+LIB_SRC=	trie.cpp rbtree.cpp
 LIB_OBJ=	$(LIB_SRC:.cpp=.o)
 
 PROGRAMS=	testtrie testrbtree

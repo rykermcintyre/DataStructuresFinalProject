@@ -10,14 +10,14 @@ void RBTree::insert(const string &key, const string &value){
     entries[key] = value;
 }
 
-const Entry RBTree::search(const string key){
+const Entry RBTree::search(const string &key){
     auto result = entries.find(key);
     if (result == entries.end()) return NONE;
     else return *result;
 }
 
 void RBTree::dump(ostream &os, DumpFlag flag){
-    for (auto it = entries.begin; it != entries.end(); it++){
+    for (auto it = entries.begin(); it != entries.end(); it++){
         switch (flag){
             case DUMP_KEY:
                 os << it->first << endl; 
