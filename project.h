@@ -20,6 +20,11 @@ typedef pair<string, string> Entry;
 extern const Entry NONE;
 const pair<string, string> EMPTY ("NULL", "NULL");
 
+typedef std::hash<std::string> HashFunky;
+
+extern const double DEFAULT_LOAD_FACTOR;
+extern const size_t DEFAULT_TABLE_SIZE;
+
 // TrieNode struct
 
 struct TrieNode {
@@ -42,6 +47,7 @@ struct RBTreeNode{
         parent = NULL;
     }
 };
+
 
 class Trie {
 public:
@@ -70,4 +76,29 @@ public:
     void        dump(ostream &os, DumpFlag flag);
 private:
     map<string, string> entries;
+};
+
+class SepChain : public Map {
+ public:
+  void insert(const string &key, const string &value);
+  const Entry search(const string &key);
+  void dump(ostream &os, DumpFlag flag);
+  SepChain(size_t table_size = DEFAULT_TABLE_SIZE, double load_factor = DEFAULT_LOAD_FACTOR) {
+    tsize = table_size;
+    lfactor = load_factor;
+    table = new map<string, string>[tsize];
+    counter = 0;
+  };
+
+  ~SepChain() {
+    delete [] table;
+  }
+
+ private:
+  void resize(const size_t new_size);
+  map<string, string> *table;
+  HashFunky funky;
+  size_t tsize;
+  size_t lfactor;
+  size_t counter;
 };
