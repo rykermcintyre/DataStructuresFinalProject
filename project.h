@@ -43,6 +43,12 @@ struct RBTreeNode{
     }
 };
 
+struct Node {
+    string username;
+    string password;
+    Node *next;
+};
+
 class Trie {
 public:
     Trie();
@@ -57,7 +63,7 @@ private:
 class Map {
 public:
     virtual void        insert(string &key, string &value) {}
-    virtual const Entry search(string &key) { return KIERAN; }
+    virtual const Entry search(string &key) { return NONE; }
     virtual void        dump(ostream &os, DumpFlag flag) {}
 };
 
@@ -70,4 +76,24 @@ public:
     void        dump(ostream &os, DumpFlag flag);
 private:
     map<string, string> entries;
+};
+
+class List {
+public:
+    List() : head(nullptr), length(0) {}
+    iterator front() { return head; }
+    ~List();
+    List(const List<string, string> other);
+    List<string, string>&operator=(List<string, string> other);
+    void swap(List<string, string> &other);
+    size_t size() const { return length; }
+    T& at(const size_t i);
+    void insert(iterator it, const string username, const string password);
+    void push_back(const string username, const string password);
+    void erase(itertor it);
+    bool search(const string username, const string password);
+private:
+    typedef Node *iterator;
+    Node *head;
+    size_t length;
 };
