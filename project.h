@@ -18,7 +18,12 @@ typedef enum {
 } DumpFlag;
 typedef pair<string, string> Entry;
 extern const Entry NONE;
+const pair<string, string> EMPTY ("NULL", "NULL");
 
+typedef std::hash<std::string> HashFunky;
+
+extern const double DEFAULT_LOAD_FACTOR;
+extern const size_t DEFAULT_TABLE_SIZE;
 
 // TrieNode struct
 
@@ -44,8 +49,7 @@ struct RBTreeNode{
 };
 
 struct Node {
-    string username;
-    string password;
+    Entry data;
     Node *next;
 };
 
@@ -63,7 +67,7 @@ private:
 class Map {
 public:
     virtual void        insert(string &key, string &value) {}
-    virtual const Entry search(string &key) { return NONE; }
+    virtual const Entry search(string &key) { return EMPTY; }
     virtual void        dump(ostream &os, DumpFlag flag) {}
 };
 
@@ -79,21 +83,42 @@ private:
 };
 
 class List {
+private:
+    typedef Node *iterator;
+    //Node *head;
+    size_t length;
 public:
+    Node *head;
     List() : head(nullptr), length(0) {}
     iterator front() { return head; }
     ~List();
-    List(const List<string, string> other);
-    List<string, string>&operator=(List<string, string> other);
-    void swap(List<string, string> &other);
     size_t size() const { return length; }
-    T& at(const size_t i);
-    void insert(iterator it, const string username, const string password);
     void push_back(const string username, const string password);
-    void erase(itertor it);
-    bool search(const string username, const string password);
-private:
-    typedef Node *iterator;
-    Node *head;
-    size_t length;
+    void erase(iterator it);
+    string search(const string username);
+};
+
+class SepChain : public Map {
+ public:
+  void insert(const string &key, const string &value);
+  const Entry search(const string &key);
+  void dump(ostream &os, DumpFlag flag);
+  SepChain(size_t table_size = DEFAULT_TABLE_SIZE, double load_factor = DEFAULT_LOAD_FACTOR) {
+    tsize = table_size;
+    lfactor = load_factor;
+    table = new map<string, string>[tsize];
+    counter = 0;
+  };
+
+  ~SepChain() {
+    delete [] table;
+  }
+
+ private:
+  void resize(const size_t new_size);
+  map<string, string> *table;
+  HashFunky funky;
+  size_t tsize;
+  size_t lfactor;
+  size_t counter;
 };
