@@ -6,7 +6,7 @@ LIBRARY=	libmap.a
 LIB_SRC=	trie.cpp rbtree.cpp sepchain.cpp
 LIB_OBJ=	$(LIB_SRC:.cpp=.o)
 
-PROGRAMS=	testtrie testrbtree testsepchain
+PROGRAMS=	testtrie testrbtree hash
 
 all: $(LIBRARY) $(PROGRAMS)
 
@@ -23,6 +23,9 @@ testrbtree: testrbtree.o project.h $(LIBRARY)
 	$(LD) $(LDFLAGS) -o $@ $< $(LIBRARY)
 
 testsepchain: testsepchain.o project.h $(LIBRARY)
+	$(LD) $(LDFLAGS) -o $@ $< $(LIBRARY)
+
+hash: hash.o project.h $(LIBRARY)
 	$(LD) $(LDFLAGS) -o $@ $< $(LIBRARY)
 
 clean:
