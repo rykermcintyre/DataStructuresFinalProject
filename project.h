@@ -48,6 +48,10 @@ struct RBTreeNode{
     }
 };
 
+struct Node {
+    Entry data;
+    Node *next;
+};
 
 class Trie {
 public:
@@ -76,6 +80,22 @@ public:
     void        dump(ostream &os, DumpFlag flag);
 private:
     map<string, string> entries;
+};
+
+class List {
+private:
+    typedef Node *iterator;
+    //Node *head;
+    size_t length;
+public:
+    Node *head;
+    List() : head(nullptr), length(0) {}
+    iterator front() { return head; }
+    ~List();
+    size_t size() const { return length; }
+    void push_back(const string username, const string password);
+    void erase(iterator it);
+    string search(const string username);
 };
 
 class SepChain : public Map {

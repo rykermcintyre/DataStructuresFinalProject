@@ -17,7 +17,7 @@ const Entry RBTree::search(const string &key){
 }
 
 void RBTree::dump(ostream &os, DumpFlag flag){
-    for (auto it = entries.begin(); it != entries.end(); it++){
+    for (auto it = entries.begin; it != entries.end(); it++){
         switch (flag){
             case DUMP_KEY:
                 os << it->first << endl; 
