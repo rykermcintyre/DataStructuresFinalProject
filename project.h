@@ -22,8 +22,8 @@ const pair<string, string> EMPTY ("NULL", "NULL");
 
 typedef std::hash<std::string> HashFunky;
 
-extern const double DEFAULT_LOAD_FACTOR;
-extern const size_t DEFAULT_TABLE_SIZE;
+const double DEFAULT_LOAD_FACTOR = 0.5;
+const size_t DEFAULT_TABLE_SIZE = 1000;
 
 // TrieNode struct
 

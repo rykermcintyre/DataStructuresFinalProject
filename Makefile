@@ -3,10 +3,10 @@ CXXFLAGS=	-g -std=gnu++11
 LD=			g++
 LDFLAGS=	
 LIBRARY=	libmap.a
-LIB_SRC=	trie.cpp rbtree.cpp linkedlist.cpp 
+LIB_SRC=	trie.cpp rbtree.cpp linkedlist.cpp sepchain.cpp 
 LIB_OBJ=	$(LIB_SRC:.cpp=.o)
 
-PROGRAMS=	testtrie testrbtree testlinkedlist hash
+PROGRAMS=	testtrie testrbtree testlinkedlist hash testsepchain
 
 all: $(LIBRARY) $(PROGRAMS)
 
@@ -26,6 +26,9 @@ testlinkedlist: testlinkedlist.o project.h $(LIBRARY)
 	$(LD) $(LDFLAGS) -o $@ $< $(LIBRARY)
 
 hash: hash.o project.h $(LIBRARY)
+	$(LD) $(LDFLAGS) -o $@ $< $(LIBRARY)
+
+testsepchain: testsepchain.o project.h $(LIBRARY)
 	$(LD) $(LDFLAGS) -o $@ $< $(LIBRARY)
 
 clean:

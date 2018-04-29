@@ -1,6 +1,6 @@
 #include "project.h"
 #include <stdexcept>
-/*
+
 void SepChain::insert(const string &key, const string &value) {
   int bucket = funky(key) % tsize;
 
@@ -49,4 +49,13 @@ void SepChain::resize(const size_t new_size) {
 
   for (size_t i = 0; i < tsize; i++) {
     for (auto it = table[i].begin(); it != table[i].end(); it++) {
- */     
+      int bucket = funky(it->first) % new_size;
+      newTable[bucket][it->first] = it->second;
+    }
+  }
+
+  delete [] table;
+
+  table = newTable;
+  tsize = new_size;
+}
