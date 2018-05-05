@@ -22,6 +22,6 @@ layout.setRowStretch(2, 1)
 
 window.resize(480, 160)
 
-window.resize(320, 180)
+#window.resize(320, 180)
 
 sys.exit(app.exec_())
