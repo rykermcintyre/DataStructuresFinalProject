@@ -1,7 +1,7 @@
 import sys
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
-import os
+import subprocess
 
 class Window(QWidget):
 
@@ -47,8 +47,15 @@ class Window(QWidget):
         self.emit(SIGNAL("sendValue(PyQt_PyObject)"), [user, passwd])
         
     def handleValue(self, value):
+        cmd = "{}".format(self.password.text())
+        print(cmd)
         self.resultLabel.setText("Submitting request...")
-        print("./hash | echo {} {}".format(self.username.text(), self.password.text()))
+        ps = subprocess.Popen(("echo", cmd), stdout=subprocess.PIPE)
+        output = subprocess.check_output(("./hash"), stdin=ps.stdout)
+        ps.wait()
+        print(output)
+        print("complete")
+        
 
 if __name__ == "__main__":
 

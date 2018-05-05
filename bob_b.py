@@ -40,14 +40,12 @@ class Window(QWidget):
         self.emit(SIGNAL("sendValue(PyQt_PyObject)"), {user: passwd})
         
     def handleValue(self, value):
-        cmd = "{} {}".format(self.username.text(), self.password.text())
-        print(cmd)
+        cmd = "{}".format(self.password.text())
         self.resultLabel.setText("Submitting request...")
-        #ps = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-        ps = subprocess.Popen(("./hash"), stdout=subprocess.PIPE)
-        #output = ps.communicate()[0]
-        output = subprocess.check_output(("echo", cmd), stdin=ps.stdout)
+        ps = subprocess.Popen(("echo", cmd), stdout=subprocess.PIPE)
+        output = subprocess.check_output(("./hash"), stdin=ps.stdout)
         ps.wait()
+        print(output)
         print("complete")
         #print(output)
         #os.system("echo {} {}".format(self.username.text(), self.password.text()))
