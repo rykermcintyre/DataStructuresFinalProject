@@ -88,7 +88,7 @@ class Window(QWidget):
         
 
 if __name__ == "__main__":
-
+    os.system("./a.out")
     app = QApplication(sys.argv)
     window = Window()
     window.show()
