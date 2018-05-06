@@ -18,6 +18,7 @@ class Window(QWidget):
         # Dropdown
         self.choice = QLabel("Backend", self)
         self.comboBox = QComboBox(self)
+        self.comboBox.addItem("Select Backend...")
         self.comboBox.addItem("Red-Black Tree")
         self.comboBox.addItem("Linked List")
         self.comboBox.addItem("Separate Chaining")
