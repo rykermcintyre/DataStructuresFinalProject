@@ -10,6 +10,16 @@ PROGRAMS=	driver testtrie testrbtree testlinkedlist hash testsepchain
 
 all: $(LIBRARY) $(PROGRAMS)
 
+test: testtrie testrbtree testlinkedlist testsepchain
+	@echo "Testing trie..."
+	@diff -q <(./testtrie) out_testtrie.txt
+	@echo "Testing rbtree..."
+	@diff -q <(testrbtree) out_testrbtree.txt
+	@echo "Testing linkedlist..."
+	@diff -q <(testlinkedlist) out_testlinkedlist.txt
+	@echo "Testing sepchain..."
+	@diff -q <(testsepchain) out_sepchain.txt
+
 %.o: %.cpp project.h
 	$(CXX) $(CXXFLAGS) -o $@ -c $<
 

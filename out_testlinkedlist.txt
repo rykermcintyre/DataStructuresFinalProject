@@ -1,0 +1,6 @@
+Username: kieran Password: digiorno
+Username: ryker Password: mcintyre
+Username: rayyan Password: karim
+Kieran's password is: digiorno
+Ryker's password is: mcintyre
+Rayyan's password is: karim
