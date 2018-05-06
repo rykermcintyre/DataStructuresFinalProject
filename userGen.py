@@ -7,7 +7,10 @@
 
 import os
 import sys
+#from PyQt4.QtCore import *
+#from PyQt4.QtGui import *
 import random
+import subprocess
 
 userPassDict = {} # username password container
 userTemp = ""
@@ -67,7 +70,12 @@ while looper < numba:
         randChar = random.randint(0, len(passVals) - 1)
         password += passDict[randChar]
 
-    userPassDict[username] = password # add username-passwd to dictionary
+    # execute hash
+    cmd = "{}".format(password)
+    ps = subprocess.Popen(("echo", cmd), stdout=subprocess.PIPE)
+    hashedp = subprocess.check_output(("./hash"), stdin=ps.stdout)
+    ps.wait()
+    userPassDict[username] = hashedp[:-1] # add username-passwd to dictionary
     looper = looper + 1
 
 for u in userPassDict: # output nicely
