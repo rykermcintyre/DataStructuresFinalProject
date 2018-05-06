@@ -10,13 +10,15 @@ class Window(QWidget):
     
         QWidget.__init__(self, parent)
         
+        self.backend = "rbtree"
+        
         button = QPushButton(self.tr("Login"))
         create = QPushButton(self.tr("Create Account"))
         self.resultLabel = QLabel(self.tr(":D"))
         self.resultLabel2 = QLabel(self.tr(":P"))
         
         # Dropdown
-        self.choice = QLabel("Backend", self)
+        self.choice = QLabel("Select Backend...", self)
         self.comboBox = QComboBox(self)
         self.comboBox.addItem("Select Backend...")
         self.comboBox.addItem("Red-Black Tree")
@@ -59,6 +61,15 @@ class Window(QWidget):
     
     def choose(self, text):
         self.choice.setText(text)
+        if self.choice.text() != "Select Backend...":
+            if self.choice.text() == "Red-Black Tree":
+                self.backend = "rbtree"
+            elif self.choice.text() == "Linked List":
+                self.backend = "linkedlist"
+            elif self.choice.text() == "Separate Chaining":
+                self.backend = "sepchain"
+            else:
+                self.backend = "rbtree"
         QApplication.setStyle(QStyleFactory.create(text))
     
     def handleClick(self):
@@ -78,7 +89,7 @@ class Window(QWidget):
         #print(cmd)
         self.resultLabel.setText("Submitting request...")
         self.resultLabel2.setText("Submitting request...")
-        cmd = "./driver rbtree {} {}".format(self.username.text(), self.password.text())
+        cmd = "./driver {} {} {}".format(self.backend, self.username.text(), self.password.text())
         os.system(cmd)
         #ps = subprocess.Popen(("echo", cmd), stdout=subprocess.PIPE)
         #output = subprocess.check_output(("./hash"), stdin=ps.stdout)
@@ -88,7 +99,7 @@ class Window(QWidget):
         
 
 if __name__ == "__main__":
-    os.system("./a.out")
+    os.system("./load")
     app = QApplication(sys.argv)
     window = Window()
     window.show()
