@@ -4,9 +4,11 @@
 #include <string>
 #include <unistd.h>
 
+using namespace std;
+
 void usage(int status) {
   cout << "usage: driver BACKEND USERNAME PASSWORD" << endl;
-  exit(status);
+  return;
 }
 
 int main(int argc, char *argv[]) {
