@@ -6,7 +6,7 @@ LIBRARY=	libmap.a
 LIB_SRC=	trie.cpp rbtree.cpp linkedlist.cpp sepchain.cpp 
 LIB_OBJ=	$(LIB_SRC:.cpp=.o)
 
-PROGRAMS=	testtrie testrbtree testlinkedlist hash testsepchain driver
+PROGRAMS=	driver testtrie testrbtree testlinkedlist hash testsepchain
 
 all: $(LIBRARY) $(PROGRAMS)
 

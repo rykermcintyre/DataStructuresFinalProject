@@ -12,9 +12,16 @@ class Window(QWidget):
         
         button = QPushButton(self.tr("Login"))
         create = QPushButton(self.tr("Create Account"))
-        self.resultLabel = QLabel(self.tr("..."))
-        self.resultLabel2 = QLabel(self.tr("..."))
-
+        self.resultLabel = QLabel(self.tr(":D"))
+        self.resultLabel2 = QLabel(self.tr(":P"))
+        
+        # Dropdown
+        self.choice = QLabel("Backend", self)
+        self.comboBox = QComboBox(self)
+        self.comboBox.addItem("Red-Black Tree")
+        self.comboBox.addItem("Linked List")
+        self.comboBox.addItem("Separate Chaining")
+        
         # Create Textbox
         self.username = QLineEdit()
         self.password = QLineEdit()
@@ -24,11 +31,11 @@ class Window(QWidget):
         self.password2 = QLineEdit()
         self.usernameLabel2 = QLabel(self.tr("Create username: "))
         self.passwordLabel2 = QLabel(self.tr("Create password: "))
-        #textbox.move(50, 50)
-        #textbox.resize(280, 40)
+        
         # New style: uses the connect method of a pyqtSignal object.
         self.connect(button, SIGNAL("clicked()"), self.handleClick)
         self.connect(create, SIGNAL("clicked()"), self.handleCreate)
+        self.comboBox.activated[str].connect(self.choose)
         
         # Old style: uses the SIGNAL function to describe the signal.
         self.connect(self, SIGNAL("sendValue(PyQt_PyObject)"), self.handleValue)
@@ -46,6 +53,13 @@ class Window(QWidget):
         layout.addWidget(self.password2, 1, 3)
         layout.addWidget(self.usernameLabel2, 0, 2)
         layout.addWidget(self.passwordLabel2, 0, 3)
+        layout.addWidget(self.choice, 3, 2)
+        layout.addWidget(self.comboBox, 3, 3)
+    
+    def choose(self, text):
+        self.choice.setText(text)
+        QApplication.setStyle(QStyleFactory.create(text))
+    
     def handleClick(self):
         # Old style: emits the signal using the SIGNAL function.
         user = self.username.text()
