@@ -2,6 +2,7 @@ import sys
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 import subprocess
+import os
 
 class Window(QWidget):
 
@@ -58,14 +59,16 @@ class Window(QWidget):
         self.emit(SIGNAL("sendValue(PyQt_PyObject)"), [user, passwd])
         
     def handleValue(self, value):
-        cmd = "{}".format(self.password.text())
-        print(cmd)
+        #cmd = "{}".format(self.password.text())
+        #print(cmd)
         self.resultLabel.setText("Submitting request...")
         self.resultLabel2.setText("Submitting request...")
-        ps = subprocess.Popen(("echo", cmd), stdout=subprocess.PIPE)
-        output = subprocess.check_output(("./hash"), stdin=ps.stdout)
-        ps.wait()
-        print(output)
+        cmd = "./driver rbtree {} {}".format(self.username.text(), self.password.text())
+        os.system(cmd)
+        #ps = subprocess.Popen(("echo", cmd), stdout=subprocess.PIPE)
+        #output = subprocess.check_output(("./hash"), stdin=ps.stdout)
+        #ps.wait()
+        #print(output)
         print("complete")
         
 
