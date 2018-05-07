@@ -6,7 +6,7 @@ LIBRARY=	libmap.a
 LIB_SRC=	trie.cpp rbtree.cpp linkedlist.cpp sepchain.cpp 
 LIB_OBJ=	$(LIB_SRC:.cpp=.o)
 
-PROGRAMS=	driver testtrie testrbtree testlinkedlist hash testsepchain load
+PROGRAMS=	continuous driver testtrie testrbtree testlinkedlist hash testsepchain load
 
 all: $(LIBRARY) $(PROGRAMS)
 
@@ -45,6 +45,9 @@ load: load.o $(LIBRARY)
 	$(LD) $(LDFLAGS) -o $@ $< $(LIBRARY)
 
 testsepchain: testsepchain.o project.h $(LIBRARY)
+	$(LD) $(LDFLAGS) -o $@ $< $(LIBRARY)
+
+continuous: continuous.o project.h $(LIBRARY)
 	$(LD) $(LDFLAGS) -o $@ $< $(LIBRARY)
 
 clean:
