@@ -8,10 +8,10 @@ BACKENDS=[
 	"rbtree",
 	"sepchain",
 ]
-NITEMS = [1, 10, 100, 1000]
+NITEMS = [1, 10, 100, 200, 300, 400, 500]
 
-print '| BACKEND         | NITEMS    | CREATE            | LOGIN             |'
-print '|-----------------|-----------|-------------------|-------------------|'
+print ('| BACKEND         | NITEMS    | CREATE            | LOGIN             |')
+print ('|-----------------|-----------|-------------------|-------------------|')
 
 for nitem in NITEMS:
     p1=subprocess.Popen(["./load2", str(nitem)])
@@ -48,4 +48,4 @@ for nitem in NITEMS:
             end = time.time()
             totLoginTime = totLoginTime + (end - start)
         avgLoginTime = totLoginTime / 10.
-        print "| {:<15} | {:<9} | {:<17} | {:<17} |".format(backend, nitem, avgCreateTime, avgLoginTime)            
+        print("| {:<15} | {:<9} | {:<17} | {:<17} |".format(backend, nitem, avgCreateTime, avgLoginTime))            
