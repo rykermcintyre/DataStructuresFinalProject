@@ -33,21 +33,6 @@ struct TrieNode {
 	vector<TrieNode*> children;
 };
 
-// RBTree struct
-struct RBTreeNode{
-    int data;
-    bool color;
-    RBTreeNode *left;
-    RBTreeNode *right;
-    RBTreeNode *parent;
-    RBTreeNode(int data){
-        this->data = data;
-        left = NULL;
-        right = NULL;
-        parent = NULL;
-    }
-};
-
 struct Node {
     Entry data;
     Node *next;
