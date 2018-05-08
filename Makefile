@@ -12,13 +12,17 @@ all: $(LIBRARY) $(PROGRAMS)
 
 test: testtrie testrbtree testlinkedlist testsepchain
 	@echo "Testing trie..."
-	@diff -q <(./testtrie) out_testtrie.txt
+	./testtrie > testtrie.txt
+	@diff -q testtrie.txt out_testtrie.txt
 	@echo "Testing rbtree..."
-	@diff -q <(testrbtree) out_testrbtree.txt
+	./testrbtree > testrbtree.txt
+	@diff -q testrbtree.txt out_testrbtree.txt
 	@echo "Testing linkedlist..."
-	@diff -q <(testlinkedlist) out_testlinkedlist.txt
+	./testlinkedlist > testlinkedlist.txt
+	@diff -q testlinkedlist.txt out_testlinkedlist.txt
 	@echo "Testing sepchain..."
-	@diff -q <(testsepchain) out_sepchain.txt
+	./testsepchain > testsepchain.txt
+	@diff -q testsepchain.txt out_sepchain.txt
 
 %.o: %.cpp project.h
 	$(CXX) $(CXXFLAGS) -o $@ -c $<
@@ -54,5 +58,5 @@ load2: load2.o $(LIBRARY)
 	$(LD) $(LDFLAGS) -o $@ $< $(LIBRARY)
 
 clean:
-	rm -f $(LIBRARY) $(PROGRAMS) *.o
+	rm -f $(LIBRARY) $(PROGRAMS) *.o testlinkedlist.txt testtrie.txt testrbtree.txt testsepchain.txt
 
