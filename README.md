@@ -15,4 +15,5 @@ Notes:
 * Database will come preloaded with 1000 usernames and passwords to enhance time comparisons.
 * Choose your data structure, then try creating some accounts and logging in!
 * Appropriate messages are displayed if you log in with incorrect credentials or attempt to create an account that already exists.
+* No, nothing _actually_ happens when you "log in."
 
