@@ -25,7 +25,7 @@ for nitem in NITEMS:
                 #print(line[0], line[1], line[2])
                 print >> sp.stdin, line[0]
                 print >> sp.stdin, line[1]
-                print >> sp.stdin, "kieran"
+                print >> sp.stdin, line[2]
                 sp.stdin.flush()
                 line  = d.readline()
         totCreateTime = 0
