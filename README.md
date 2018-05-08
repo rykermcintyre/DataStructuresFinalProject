@@ -1,11 +1,11 @@
-## DataStructuresFinalProject
+# DataStructuresFinalProject
 Username/Password encrypted key-value store
 
-# Must install:
+## Must install:
 * python2 (do not use python3)
 * PyQt4 (instructions can be found online)
 
-#Instructions:
+## Instructions:
 1. Clone repository
 2. Type `make`
 3. Type `python2 bob.py`
